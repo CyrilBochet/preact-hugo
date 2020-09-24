@@ -10,17 +10,17 @@ steps:
       - npm install
       - npm run build
 
-  slack:
-    image: plugins/slack
-    channel: drone-ci
-    webhook: https://hooks.slack.com/services/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
-    template: >
-      {{#if build.pull }}
-        *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
-      {{else}}
-        *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
-      {{/if}}
-      Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-      Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
-      Author: {{ build.author }}
-      <{{ build.link }}|Visit build page ↗>
+slack:
+  image: plugins/slack
+  channel: drone-ci
+  webhook: https://hooks.slack.com/services/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
+  template: >
+    {{#if build.pull }}
+      *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
+    {{else}}
+      *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
+    {{/if}}
+    Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+    Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+    Author: {{ build.author }}
+    <{{ build.link }}|Visit build page ↗>
