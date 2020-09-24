@@ -13,7 +13,8 @@ steps:
 notify:
   image: plugins/slack
   channel: drone-ci
-  webhook: https://hooks.slack.com/services/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
+  webhook:
+    from_secret: SLACK_WEBHOOKS
   template: >
     {{#if build.pull }}
       *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
