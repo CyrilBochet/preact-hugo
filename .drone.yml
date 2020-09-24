@@ -10,10 +10,10 @@ steps:
       - npm install
       - npm run build
 
-slack:
+notify:
   image: plugins/slack
   channel: drone-ci
-  webhook: https://hooks.slack.com/services/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
+  webhook: https://hooks.slack.com/services/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
   template: >
     {{#if build.pull }}
       *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
