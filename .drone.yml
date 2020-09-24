@@ -5,7 +5,7 @@ steps:
   - name: preact-cli
     image: lowess/preact-cli
     commands:
-      - export BASE_URL=${DRONE_REPO_OWNER}.github.io/preact-cli
+      - export BASE_URL=${DRONE_REPO_OWNER}.github.io/preact-hugo/
       - preact create ${DRONE_REPO}#${DRONE_COMMIT} test-ci
       - cd test-ci
       - npm install
