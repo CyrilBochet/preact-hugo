@@ -9,6 +9,13 @@ steps:
       - cd test-ci
       - npm install
       - npm run build
+  - name: publish
+    image: plugins/gh-pages
+    settings:
+      username: CyrilBochet
+      password:
+        from_secret: PW_GH
+      pages_directory: test-ci/dist
   - name: notify
     image: plugins/slack
     settings:
