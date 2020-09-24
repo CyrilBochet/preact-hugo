@@ -1,12 +1,11 @@
 kind: pipeline
 name: mon-pipeline-ci
-environment:
-  BASE_URL: preact-hugo/
 
 steps:
   - name: preact-cli
     image: lowess/preact-cli
     commands:
+      - export BASE_URL=${DRONE_REPO_OWNER}.github.io/preact-cli
       - preact create ${DRONE_REPO}#${DRONE_COMMIT} test-ci
       - cd test-ci
       - npm install
