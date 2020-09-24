@@ -1,5 +1,7 @@
 kind: pipeline
 name: mon-pipeline-ci
+environment:
+  BASE_URL: preact-hugo/
 
 steps:
   - name: preact-cli
